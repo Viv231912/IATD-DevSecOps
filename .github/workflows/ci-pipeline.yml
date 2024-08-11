@@ -28,7 +28,7 @@ jobs:
 
   sonarqube:
     needs: test
-    if: false
+    if: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -42,7 +42,7 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
 
   dast:
-    needs: [test]
+    needs: [test, sonarqube]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -83,7 +83,7 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
-    if: false
+    if: true
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
