@@ -5,8 +5,8 @@
     echo "Report URL $URL"
     curl -u ${{ secrets.SONAR_TOKEN }}: "$URL" -o sonarqube-report.json
 - name: Upload SonarQube report
-    id: artifact-sonarqube
-    uses: actions/upload-artifact@v4
-    with:
-      name: sonarqube-report
-      path: sonarqube-report.json
+  id: artifact-sonarqube
+  uses: actions/upload-artifact@v4
+  with:
+    name: sonarqube-report
+    path: sonarqube-report.json
