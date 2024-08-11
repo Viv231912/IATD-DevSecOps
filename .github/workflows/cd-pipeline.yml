@@ -19,6 +19,7 @@ jobs:
           resourceGroup: devsecops-lab
           location: australiaeast
           targetPort: 5000
+
   submit_results:
     needs: [deploy]
     if: true
