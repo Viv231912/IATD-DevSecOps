@@ -25,6 +25,7 @@ jobs:
         with:
           name: test-results
           path: junit/test-results.xml
+
   sonarqube:
     needs: test
     if: false
@@ -43,7 +44,6 @@ jobs:
   dast:
     needs: [test, sonarqube]
     runs-on: ubuntu-latest
-    if: true
     steps:
       - uses: actions/checkout@v4
       - name: Set up QEMU
@@ -60,11 +60,9 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-labs:dast-test
-
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
       - name: Deploy DAST Container App
         uses: azure/container-apps-deploy-action@v1
         with:
@@ -74,7 +72,6 @@ jobs:
           resourceGroup: devsecops-lab
           location: australiaeast
           targetPort: 5000
-
       - name: Get deployed DAST app url
         run: |
           export FQDN=$(az containerapp show -n devops-test-app -g devsecops-lab --query properties.configuration.ingress.fqdn -o tsv)
