@@ -90,7 +90,6 @@ jobs:
           cmd_options: "-a -c /zap/wrk/.zap/rules.tsv"
           fail_action: false
           allow_issue_writing: false
-
       - name: Upload ZAP report
         id: artifact-zap
         uses: actions/upload-artifact@v4
