@@ -98,7 +98,7 @@ jobs:
           path: report_json.json
 
   build:
-    needs: [dast]
+    needs: [test, dast]
     runs-on: ubuntu-latest
     if: true
     steps:
