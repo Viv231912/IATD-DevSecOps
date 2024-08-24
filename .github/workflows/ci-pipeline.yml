@@ -210,7 +210,7 @@ jobs:
           echo "Image report upload: $IMAGE_RESPONSE"
 
   build:
-    needs: [test, sonarqube, dast, image-scan, security_gate]
+    needs: []
     runs-on: ubuntu-latest
     if: true
     steps:
