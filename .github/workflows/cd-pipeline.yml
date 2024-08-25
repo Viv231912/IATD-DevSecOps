@@ -61,6 +61,7 @@ jobs:
   #         echo "Week2 submit: $WEEK2_SUBMIT"
   #         MODEL_RESPONSE=$(curl -X POST -H "Authorization: Bearer $AZURE_ACCESS_TOKEN" --data-binary @"/home/runner/work/IATD-DevSecOps/IATD-DevSecOps/threat-model/ci-pipeline.json" https://devsecops-ver.azurewebsites.net/api/week6-report)
   #         echo "Model report upload: $MODEL_RESPONSE"
+
   submit_results:
     needs: [deploy]
     if: true
@@ -81,11 +82,11 @@ jobs:
             ACCESS_TOKEN=$(az account get-access-token | jq -r .accessToken)
             echo "azureAccessToken=$ACCESS_TOKEN" >> "$GITHUB_OUTPUT"
 
-      - name: List threat-model directory
-        run: ls -la $GITHUB_WORKSPACE/threat-model/
+      # - name: List threat-model directory
+      #   run: ls -la $GITHUB_WORKSPACE/threat-model/
 
-      - name: Output ci-pipeline.json content
-        run: cat $GITHUB_WORKSPACE/threat-model/ci-pipeline.json
+      # - name: Output ci-pipeline.json content
+      #   run: cat $GITHUB_WORKSPACE/threat-model/ci-pipeline.json
 
       - name: Upload reports
         env:
